@@ -47,3 +47,15 @@ npm run build
 ```bash
 npm run preview
 ```
+
+## GitHub Actions 自动部署到 Pages
+
+项目已内置工作流文件：`.github/workflows/deploy-pages.yml`，在 `push main` 时自动构建并部署。
+
+首次启用时请在 GitHub 仓库中确认：
+
+1. 进入 `Settings -> Pages`
+2. `Build and deployment` 的 `Source` 选择 `GitHub Actions`
+3. 确认默认分支为 `main`（或按需修改工作流触发分支）
+
+完成后，每次推送到 `main` 会自动触发部署。部署成功后可在 Actions 任务日志中看到 Pages 访问地址。
