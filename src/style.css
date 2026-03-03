@@ -1,0 +1,112 @@
+:root {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  color: #303133;
+  background-color: #f4f6fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 1200px;
+  background: linear-gradient(180deg, #f9fbff 0%, #f4f6fb 100%);
+}
+
+#app {
+  width: 100%;
+}
+
+.bill-page {
+  padding: 18px 20px 28px;
+}
+
+.filter-card {
+  margin-bottom: 14px;
+}
+
+.query-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.summary-card {
+  border-top: 3px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-1px);
+}
+
+.summary-card.total {
+  border-top-color: #4d9dff;
+}
+
+.summary-card.reconciled {
+  border-top-color: #70c76a;
+}
+
+.summary-card.pending {
+  border-top-color: #e4b44e;
+}
+
+.summary-title {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #7f8aa1;
+}
+
+.summary-value {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.summary-card.total .summary-value {
+  color: #409eff;
+}
+
+.summary-card.reconciled .summary-value {
+  color: #67c23a;
+}
+
+.summary-card.pending .summary-value {
+  color: #e6a23c;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.selected-text {
+  margin: 0;
+  font-size: 13px;
+  color: #909399;
+}
+
+.toolbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.mail-meta {
+  margin-bottom: 12px;
+}
