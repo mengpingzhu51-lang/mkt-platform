@@ -1,0 +1,1 @@
+[GET] https://intra-test.marketing.tcredit.com/version.json?t=1772608553498 => [200] 

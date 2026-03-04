@@ -1,12 +1,13 @@
-# mkt-platform 账单页 Demo
+# mkt-platform
 
-基于 `Vue3 + Vite + TypeScript + Element Plus` 实现账单管理页面，包含以下能力：
+基于 `Vue3 + Vite + TypeScript + Element Plus` 的营销平台复刻工程（Mock-first）。
 
-- 筛选条件区域（账单月、客户、客户负责人、对账状态）
-- 金额统计卡片（总金额、已对账总金额、未对账总金额）
-- 账单列表与行操作（账单详情、对账、邮件记录）
-- 顶部操作按钮（导出列表、导出账单、邮件发送）
-- 邮件记录弹窗（客户信息 + 发送记录表）
+当前版本已完成：
+
+- 平台壳层（顶栏一级模块、左侧二级菜单、面包屑、路由体系）
+- 首页看板首版（指标卡、趋势图、快捷入口、关键待办）
+- API 分层与 Mock 体系（`axios + msw`）
+- 审计文档与迭代模板（支持按业务域持续复刻）
 
 ## 环境要求
 
@@ -48,14 +49,19 @@ npm run build
 npm run preview
 ```
 
-## GitHub Actions 自动部署到 Pages
+## 目录结构（核心）
 
-项目已内置工作流文件：`.github/workflows/deploy-pages.yml`，在 `push main` 时自动构建并部署。
-
-首次启用时请在 GitHub 仓库中确认：
-
-1. 进入 `Settings -> Pages`
-2. `Build and deployment` 的 `Source` 选择 `GitHub Actions`
-3. 确认默认分支为 `main`（或按需修改工作流触发分支）
-
-完成后，每次推送到 `main` 会自动触发部署。部署成功后可在 Actions 任务日志中看到 Pages 访问地址。
+```text
+src/
+  api/                 # 请求层
+  components/platform/ # 平台通用组件
+  layouts/             # 主布局壳层
+  mocks/               # MSW mock handlers + fixtures
+  router/              # 路由与业务模块映射
+  stores/              # Pinia 状态管理
+  types/               # 业务类型定义
+  views/               # 页面层（dashboard + 占位模块）
+docs/
+  platform-audit.md
+  platform-iteration-template.md
+```
