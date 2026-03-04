@@ -73,11 +73,19 @@ body {
   letter-spacing: 0;
   font-size: 18px;
   white-space: nowrap;
+  min-width: 0;
 }
 
 .brand-logo {
+  flex: 0 0 auto;
   width: 28px;
   height: 28px;
+  object-fit: contain;
+}
+
+.brand span {
+  display: inline-block;
+  line-height: 1;
 }
 
 .group-switch {

@@ -4,12 +4,17 @@ import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { Fold, Expand, ArrowRight, ArrowDown } from '@element-plus/icons-vue'
 import { useAppStore } from '../stores/app'
+import brandLogo from '../assets/marketing-logo.svg'
 
 const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
 const { currentGroup, sidebarCollapsed, topGroups, activeMenu, expandedKeys } = storeToRefs(appStore)
-const brandLogo = '/marketing-logo.svg'
+
+function onBrandLogoError(event: Event) {
+  const target = event.target as HTMLImageElement | null
+  if (target) target.style.display = 'none'
+}
 
 const breadcrumbs = computed(() => {
   if (route.path === '/index') {
@@ -69,7 +74,7 @@ const routeTransitionKey = computed(() => `${currentGroup.value}-${route.fullPat
   <div class="platform-shell">
     <header class="shell-header">
       <div class="brand">
-        <img :src="brandLogo" alt="智能营销平台" class="brand-logo" />
+        <img :src="brandLogo" alt="" class="brand-logo" aria-hidden="true" @error="onBrandLogoError" />
         <span>智能营销平台</span>
       </div>
       <div class="group-switch">

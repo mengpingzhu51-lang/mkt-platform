@@ -1,0 +1,21 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Smart Marketing Platform Logo</title>
+  <desc id="logoDesc">Brand mark with growth line and hub node.</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="32" y1="24" x2="228" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0EA5E9" />
+      <stop offset="1" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="66" y1="188" x2="194" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#86EFAC" />
+      <stop offset="1" stop-color="#22D3EE" />
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="224" height="224" rx="52" fill="url(#bgGrad)" />
+  <path d="M68 174 L112 136 L150 152 L192 92" stroke="url(#lineGrad)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <circle cx="68" cy="174" r="10" fill="#E0F2FE" />
+  <circle cx="112" cy="136" r="10" fill="#E0F2FE" />
+  <circle cx="150" cy="152" r="10" fill="#E0F2FE" />
+  <circle cx="192" cy="92" r="12" fill="#F0FDFA" />
+  <circle cx="128" cy="128" r="34" fill="none" stroke="#BFDBFE" stroke-width="10" opacity="0.85" />
+</svg>
