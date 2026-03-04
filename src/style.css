@@ -52,9 +52,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 20px;
   height: 60px;
   padding: 0 20px;
@@ -65,10 +65,19 @@ body {
 }
 
 .brand {
+  display: inline-flex;
+  justify-self: start;
+  align-items: center;
+  gap: 10px;
   font-weight: 700;
   letter-spacing: 0;
   font-size: 18px;
   white-space: nowrap;
+}
+
+.brand-logo {
+  width: 28px;
+  height: 28px;
 }
 
 .group-switch {
@@ -76,6 +85,7 @@ body {
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
+  justify-self: center;
 }
 
 .group-button {
@@ -87,7 +97,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.16s ease;
+  transition: transform 0.24s ease, background-color 0.24s ease, color 0.24s ease, border-color 0.24s ease;
 }
 
 .group-button:hover {
@@ -101,15 +111,7 @@ body {
   color: #fff;
   font-weight: 500;
   border-color: var(--brand);
-}
-
-.ghost-btn {
-  border: 1px solid #dcdfe6;
-  border-radius: 4px;
-  background: #fff;
-  color: #606266;
-  padding: 7px 10px;
-  font-size: 13px;
+  transform: translateY(-1px);
 }
 
 .shell-body {
@@ -264,6 +266,17 @@ body {
   color: var(--text-soft);
   margin-bottom: 8px;
   font-size: 12px;
+}
+
+.module-fade-slide-enter-active,
+.module-fade-slide-leave-active {
+  transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+.module-fade-slide-enter-from,
+.module-fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 .panel {

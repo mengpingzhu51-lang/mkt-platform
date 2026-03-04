@@ -136,7 +136,7 @@ export const useAppStore = defineStore('app', () => {
     }
 
     if (matchedKeys.length > 0) {
-      expandedKeys.value = Array.from(new Set(matchedKeys))
+      expandedKeys.value = Array.from(new Set([...expandedKeys.value, ...matchedKeys]))
     }
   }
 

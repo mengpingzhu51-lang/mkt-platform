@@ -2,7 +2,6 @@
 import { computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { ElMessage } from 'element-plus'
 import { Fold, Expand, ArrowRight, ArrowDown } from '@element-plus/icons-vue'
 import { useAppStore } from '../stores/app'
 
@@ -10,6 +9,7 @@ const route = useRoute()
 const router = useRouter()
 const appStore = useAppStore()
 const { currentGroup, sidebarCollapsed, topGroups, activeMenu, expandedKeys } = storeToRefs(appStore)
+const brandLogo = '/marketing-logo.svg'
 
 const breadcrumbs = computed(() => {
   if (route.path === '/index') {
@@ -38,7 +38,7 @@ watch(
 )
 
 function switchGroup(title: string) {
-  appStore.setGroup(title, true)
+  appStore.setGroup(title, false)
   const target = topGroups.value.find((group) => group.title === title)
   if (target) {
     const first = target.entries[0]?.children?.[0]?.path ?? target.entries[0]?.path ?? '/index'
@@ -52,10 +52,7 @@ function isExpanded(key: string) {
 
 function onLevel1Click(key: string, exclusive = false) {
   if (exclusive) {
-    const level1Keys = activeMenu.value.entries.map((entry) => entry.key)
-    const current = isExpanded(key)
-    expandedKeys.value = expandedKeys.value.filter((item) => !level1Keys.includes(item))
-    if (!current) expandedKeys.value.push(key)
+    appStore.toggleExpand(key)
     return
   }
   appStore.toggleExpand(key)
@@ -65,15 +62,16 @@ function onEntryClick(path: string) {
   void router.push(path)
 }
 
-function notifySoon() {
-  ElMessage.info('该模块将按审计清单逐步复刻。')
-}
+const routeTransitionKey = computed(() => `${currentGroup.value}-${route.fullPath}`)
 </script>
 
 <template>
   <div class="platform-shell">
     <header class="shell-header">
-      <div class="brand">营销管理系统</div>
+      <div class="brand">
+        <img :src="brandLogo" alt="智能营销平台" class="brand-logo" />
+        <span>智能营销平台</span>
+      </div>
       <div class="group-switch">
         <button
           v-for="group in topGroups"
@@ -84,9 +82,6 @@ function notifySoon() {
         >
           {{ group.title }}
         </button>
-      </div>
-      <div class="header-actions">
-        <button class="ghost-btn" @click="notifySoon">审计对照</button>
       </div>
     </header>
 
@@ -154,7 +149,11 @@ function notifySoon() {
             <el-icon v-if="index < breadcrumbs.length - 1"><ArrowRight /></el-icon>
           </span>
         </div>
-        <router-view />
+        <router-view v-slot="{ Component }">
+          <transition name="module-fade-slide" mode="out-in">
+            <component :is="Component" :key="routeTransitionKey" />
+          </transition>
+        </router-view>
       </main>
     </div>
   </div>

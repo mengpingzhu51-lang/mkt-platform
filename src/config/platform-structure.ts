@@ -120,7 +120,6 @@ export const platformStructure: PlatformModule[] = [
       {
         title: '客户侧',
         leaves: [
-          { title: '客户侧单价录入', path: '/finance/partnerUnitPrice', pageType: '配置', actions: ['新增', '编辑'] },
           { title: '客户侧月详单', path: '/finance/finance/partner/monthDetailBill', pageType: '列表', actions: ['筛选', '导出'] },
           { title: '客户侧总账单', path: '/finance/incomeTotalBill', pageType: '报表', actions: ['筛选', '导出'] }
         ]
