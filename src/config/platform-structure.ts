@@ -153,15 +153,13 @@ export const platformStructure: PlatformModule[] = [
     ]
   },
   {
-    title: '工具模块',
-    basePath: '/marketTool',
+    title: '客户中心',
+    basePath: '/customer',
     branches: [
       {
-        title: '任务工具',
+        title: '签约管理',
         leaves: [
-          { title: '跑批回溯', path: '/marketTool/batchProcessRecall', pageType: '流程', actions: ['筛选', '执行'] },
-          { title: '进件跑批（新）', path: '/marketTool/backtrack', pageType: '流程', actions: ['筛选', '执行'] },
-          { title: '营销分SFTP管理', path: '/marketTool/taskTool', pageType: '配置', actions: ['上传', '下载', '重试'] }
+          { title: '主体管理', path: '/customer/tenantConfig', pageType: '配置', actions: ['新增', '编辑'] }
         ]
       }
     ]
@@ -173,7 +171,6 @@ export const platformStructure: PlatformModule[] = [
       {
         title: '权限与组织',
         leaves: [
-          { title: '主体管理', path: '/system/tenantConfig', pageType: '配置', actions: ['新增', '编辑'] },
           { title: '部门管理', path: '/system/dept', pageType: '列表', actions: ['新增', '编辑'] },
           { title: '菜单管理', path: '/system/menu', pageType: '列表', actions: ['新增', '编辑'] },
           { title: '角色管理', path: '/system/role', pageType: '列表', actions: ['新增', '编辑'] },

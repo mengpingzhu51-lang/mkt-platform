@@ -1,6 +1,13 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { flatPlatformLeaves, platformStructure } from '../../config/platform-structure'
 
+function resolveLeafComponent(path: string) {
+  if (path === '/customer/tenantConfig') {
+    return () => import('../../views/customer/SubjectManagementView.vue')
+  }
+  return () => import('../../views/common/ModulePlaceholder.vue')
+}
+
 function childPathFromAbsolute(basePath: string, absolutePath: string) {
   const base = `${basePath}/`
   if (!absolutePath.startsWith(base)) {
@@ -19,7 +26,7 @@ const platformModules: RouteRecordRaw[] = platformStructure.map((module) => {
     children: moduleLeaves.map((leaf) => ({
       path: childPathFromAbsolute(module.basePath, leaf.path),
       name: leaf.path.replace(/[^\w]/g, '-').replace(/^-+/, ''),
-      component: () => import('../../views/common/ModulePlaceholder.vue'),
+      component: resolveLeafComponent(leaf.path),
       meta: {
         title: leaf.title,
         moduleTitle: leaf.moduleTitle,
