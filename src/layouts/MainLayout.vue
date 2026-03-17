@@ -36,6 +36,7 @@ watch(
       .sort((a, b) => b.basePath.length - a.basePath.length)[0]
     if (matched) {
       appStore.setGroup(matched.title, false)
+      appStore.rememberGroupPath(matched.title, path)
       appStore.syncExpandedByPath(path)
     }
   },
@@ -46,8 +47,9 @@ function switchGroup(title: string) {
   appStore.setGroup(title, false)
   const target = topGroups.value.find((group) => group.title === title)
   if (target) {
-    const first = target.entries[0]?.children?.[0]?.path ?? target.entries[0]?.path ?? '/index'
-    void router.push(first)
+    const remembered = appStore.getRememberedGroupPath(title)
+    const fallback = target.entries[0]?.children?.[0]?.path ?? target.entries[0]?.path ?? '/index'
+    void router.push(remembered ?? fallback)
   }
 }
 

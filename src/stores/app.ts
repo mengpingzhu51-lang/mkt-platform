@@ -76,6 +76,7 @@ export const useAppStore = defineStore('app', () => {
   const currentGroup = ref('首页')
   const sidebarCollapsed = ref(false)
   const expandedKeys = ref<string[]>([])
+  const lastVisitedPathByGroup = ref<Record<string, string>>({})
 
   const topGroups = computed(() => groups)
   const activeMenu = computed<MenuGroup>(
@@ -88,6 +89,17 @@ export const useAppStore = defineStore('app', () => {
       const group = groups.find((item) => item.title === title)
       expandedKeys.value = group?.entries[0] ? [group.entries[0].key] : []
     }
+  }
+
+  function rememberGroupPath(title: string, path: string) {
+    lastVisitedPathByGroup.value = {
+      ...lastVisitedPathByGroup.value,
+      [title]: path
+    }
+  }
+
+  function getRememberedGroupPath(title: string) {
+    return lastVisitedPathByGroup.value[title]
   }
 
   function toggleSidebar() {
@@ -150,7 +162,10 @@ export const useAppStore = defineStore('app', () => {
     expandedKeys,
     topGroups,
     activeMenu,
+    lastVisitedPathByGroup,
     setGroup,
+    rememberGroupPath,
+    getRememberedGroupPath,
     toggleSidebar,
     toggleExpand,
     isLeaf,
